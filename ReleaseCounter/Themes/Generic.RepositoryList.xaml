@@ -1,0 +1,107 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:ReleaseCounter"
+                    xmlns:controls="clr-namespace:ReleaseCounter.Controls"
+                    xmlns:metro="http://schemes.grabacr.net/winfx/2014/controls">
+
+    <Style TargetType="{x:Type controls:RepositoryList}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type controls:RepositoryList}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="4" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+
+
+                            <metro:PromptTextBox Prompt="Filter"
+                                                 Text="{Binding Filter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource TemplatedParent}}"
+                                                 FontSize="18" />
+
+
+                            <ListBox Grid.Row="2"
+                                     Width="200"
+                                     ItemsSource="{TemplateBinding AvailableRepositories}"
+                                     SelectedItem="{Binding Selected, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                     Background="{DynamicResource BackgroundBrushKey}"
+                                     ScrollViewer.PanningMode="Both">
+
+                                <ListBox.Template>
+                                    <ControlTemplate TargetType="{x:Type ListBox}">
+                                        <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                                      PanningMode="Both">
+                                            <StackPanel Background="{TemplateBinding Background}"
+                                                        IsItemsHost="True" />
+                                        </ScrollViewer>
+                                    </ControlTemplate>
+                                </ListBox.Template>
+
+                                <ListBox.ItemContainerStyle>
+                                    <Style TargetType="{x:Type ListBoxItem}">
+                                        <Setter Property="Foreground"
+                                                Value="{DynamicResource ActiveForegroundBrushKey}" />
+                                        <Setter Property="Height"
+                                                Value="38" />
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                                    <Border Background="{TemplateBinding Background}">
+                                                        <ContentPresenter />
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Setter Property="FocusVisualStyle"
+                                                Value="{DynamicResource {x:Static SystemParameters.FocusVisualStyleKey}}" />
+                                        <Style.Triggers>
+                                            <Trigger Property="IsSelected"
+                                                     Value="True">
+                                                <Setter Property="Background"
+                                                        Value="{DynamicResource ThemeBrushKey}" />
+                                                <Setter Property="Foreground"
+                                                        Value="{DynamicResource AccentHighlightBrushKey}" />
+                                            </Trigger>
+                                            <Trigger Property="IsMouseOver"
+                                                     Value="True">
+                                                <Setter Property="Background"
+                                                        Value="{DynamicResource ActiveBackgroundBrushKey}" />
+                                                <Setter Property="Foreground"
+                                                        Value="{DynamicResource ActiveForegroundBrushKey}" />
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </ListBox.ItemContainerStyle>
+
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="4" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="4" />
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Grid.Column="1"
+                                                       Text="{Binding Name}"
+                                                       Style="{DynamicResource HeaderTextStyleKey}"
+                                                       FontSize="18"
+                                                       Foreground="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBoxItem}}, Path=Foreground}"
+                                                       TextTrimming="CharacterEllipsis" />
+                                        </Grid>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
+
+
+

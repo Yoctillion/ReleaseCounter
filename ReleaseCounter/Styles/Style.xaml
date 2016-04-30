@@ -1,0 +1,51 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:ReleaseCounter"
+                    xmlns:metro="http://schemes.grabacr.net/winfx/2014/controls">
+
+    <FontFamily x:Key="DefaultFontFamilyKey">Segoe UI</FontFamily>
+    <Style x:Key="DefaultTextStyleKey" TargetType="{x:Type TextBlock}">
+        <Setter Property="FontFamily"
+                Value="{StaticResource DefaultFontFamilyKey}" />
+        <Setter Property="Foreground"
+                Value="{DynamicResource ForegroundBrushKey}" />
+        <Setter Property="FontSize"
+                Value="12" />
+        <Setter Property="VerticalAlignment"
+                Value="Center" />
+    </Style>
+    <Style x:Key="HeaderTextStyleKey" TargetType="{x:Type TextBlock}"
+           BasedOn="{StaticResource DefaultTextStyleKey}">
+        <Setter Property="FontSize"
+                Value="20" />
+    </Style>
+    <Style x:Key="ActiveHeaderStyleKey" TargetType="{x:Type TextBlock}"
+           BasedOn="{StaticResource HeaderTextStyleKey}">
+        <Setter Property="Foreground"
+                Value="{DynamicResource ActiveForegroundBrushKey}" />
+    </Style>
+
+    <!--<Style x:Key="AutoCompleteTextBox" TargetType="{x:Type metro:PromptTextBox}"
+           BasedOn="{StaticResource {x:Type metro:PromptTextBox}}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBoxBase}">
+                    <Grid x:Name="root">
+                        <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                        <Popup x:Name="PART_Popup"
+                               AllowsTransparency="true"
+                               Placement="Bottom"
+                               IsOpen="False"
+                               PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}">
+                            <ListBox x:Name="PART_ItemList"
+                                     SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                     VerticalContentAlignment="Stretch"
+                                     HorizontalContentAlignment="Stretch"
+                                     KeyboardNavigation.DirectionalNavigation="Contained" />
+                        </Popup>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>-->
+</ResourceDictionary>
